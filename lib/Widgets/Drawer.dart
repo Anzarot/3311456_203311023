@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:http/http.dart' as http;
-import 'package:maestro2/Pages/loginPage.dart';
+import 'package:maestro2/Pages/main.dart';
 import 'dart:io';
 import 'dart:convert';
 import 'package:maestro2/Utility Files/ClientSecret.dart';

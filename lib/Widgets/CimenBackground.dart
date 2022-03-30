@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:maestro2/Pages/loginPage.dart';
+import 'package:maestro2/Pages/main.dart';
 class Cimen extends StatefulWidget {
   const Cimen({Key? key}) : super(key: key);
 
