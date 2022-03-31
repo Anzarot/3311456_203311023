@@ -1,13 +1,11 @@
 import 'dart:ui';
 import 'package:http/http.dart' as http;
-import 'package:maestro2/Pages/main.dart';
 import 'dart:io';
 import 'dart:convert';
 import 'package:maestro2/Utility Files/ClientSecret.dart';
 import 'package:maestro2/Pages/Profil.dart';
 import 'package:maestro2/Pages/Settings.dart';
 import 'package:flutter/material.dart';
-import 'package:maestro2/Widgets/CimenBackground.dart';
 Future<Avatar> fetchAvatar() async {
   final response = await http.get(
       Uri.parse(
@@ -171,7 +169,7 @@ class _SolBarState extends State<SolBar> {
                       ),
                     ),
                   ],
-                )),Container(child: Cimen())
+                )),Container(child: Image.asset("assets/images/blurlu.png"))
           ],
         ),
       ),

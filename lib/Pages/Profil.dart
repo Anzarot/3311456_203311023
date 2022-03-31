@@ -39,12 +39,11 @@ class ProfilVeri {
 
   factory ProfilVeri.fromJson(Map<String, dynamic> json) {
     return ProfilVeri(
-      ad: json['display_name'].toString(),
-      url: json['images'][0]['url'].toString(),
-      eposta: json['email'].toString(),
-      takipci: json['followers']['total'].toString(),
-      ulke: json['country'].toString()
-    );
+        ad: json['display_name'].toString(),
+        url: json['images'][0]['url'].toString(),
+        eposta: json['email'].toString(),
+        takipci: json['followers']['total'].toString(),
+        ulke: json['country'].toString());
   }
 }
 
@@ -91,7 +90,9 @@ class _ProfilPageState extends State<ProfilPage> {
                             child: Center(
                               child: Column(
                                 children: [
-                                  Flexible(flex:2,fit: FlexFit.tight,
+                                  Flexible(
+                                    flex: 2,
+                                    fit: FlexFit.tight,
                                     child: FutureBuilder<ProfilVeri>(
                                       future: ProfilVerim,
                                       builder: (context, snapshot) {
@@ -110,7 +111,9 @@ class _ProfilPageState extends State<ProfilPage> {
                                       },
                                     ),
                                   ),
-                                  Flexible(flex:1,fit: FlexFit.tight,
+                                  Flexible(
+                                    flex: 1,
+                                    fit: FlexFit.tight,
                                     child: FutureBuilder<ProfilVeri>(
                                         future: ProfilVerim,
                                         builder: (context, snapshot) {
@@ -143,11 +146,13 @@ class _ProfilPageState extends State<ProfilPage> {
                             child: Center(
                               child: Column(
                                 children: [
-                                  Flexible(flex:1,fit: FlexFit.tight,
+                                  Flexible(
+                                    flex: 1,
+                                    fit: FlexFit.tight,
                                     child: Center(
                                       child: Row(children: [
                                         Icon(
-                                          Icons.remove_red_eye_sharp ,
+                                          Icons.remove_red_eye_sharp,
                                           size: 35,
                                         ),
                                         FutureBuilder<ProfilVeri>(
@@ -157,16 +162,20 @@ class _ProfilPageState extends State<ProfilPage> {
                                                 return Text(
                                                     "Takipçi: " +
                                                         snapshot.data!.takipci,
-                                                    style: TextStyle(fontSize: 30));
+                                                    style: TextStyle(
+                                                        fontSize: 30));
                                               } else if (snapshot.hasError) {
-                                                return Text('${snapshot.error}');
+                                                return Text(
+                                                    '${snapshot.error}');
                                               }
                                               return const CircularProgressIndicator();
                                             }),
                                       ]),
                                     ),
                                   ),
-                                  Flexible(flex:1,fit: FlexFit.tight,
+                                  Flexible(
+                                    flex: 1,
+                                    fit: FlexFit.tight,
                                     child: Center(
                                       child: Row(
                                         children: [
@@ -182,10 +191,12 @@ class _ProfilPageState extends State<ProfilPage> {
                                                   if (snapshot.hasData) {
                                                     return Text(
                                                         "E-Posta: " +
-                                                            snapshot.data!.eposta,
+                                                            snapshot
+                                                                .data!.eposta,
                                                         style: TextStyle(
                                                             fontSize: 30));
-                                                  } else if (snapshot.hasError) {
+                                                  } else if (snapshot
+                                                      .hasError) {
                                                     return Text(
                                                         '${snapshot.error}');
                                                   }
@@ -195,7 +206,10 @@ class _ProfilPageState extends State<ProfilPage> {
                                         ],
                                       ),
                                     ),
-                                  ),Flexible(flex:1,fit: FlexFit.tight,
+                                  ),
+                                  Flexible(
+                                    flex: 1,
+                                    fit: FlexFit.tight,
                                     child: Center(
                                       child: Row(children: [
                                         Icon(
@@ -209,15 +223,20 @@ class _ProfilPageState extends State<ProfilPage> {
                                                 return Text(
                                                     "Ülke: " +
                                                         snapshot.data!.ulke,
-                                                    style: TextStyle(fontSize: 30));
+                                                    style: TextStyle(
+                                                        fontSize: 30));
                                               } else if (snapshot.hasError) {
-                                                return Text('${snapshot.error}');
+                                                return Text(
+                                                    '${snapshot.error}');
                                               }
                                               return const CircularProgressIndicator();
                                             }),
                                       ]),
                                     ),
-                                  ),Spacer(flex: 1,)
+                                  ),
+                                  Spacer(
+                                    flex: 1,
+                                  )
                                 ],
                               ),
                             ),

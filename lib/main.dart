@@ -1,19 +1,10 @@
 import 'package:flutter/material.dart';
-import 'mainPage.dart';
+import 'package:maestro2/Pages/mainPage.dart';
 
-ThemeData lightTheme = ThemeData.light().copyWith(
-  primaryColor: Colors.white,
-);
-ThemeData darkTheme = ThemeData.dark().copyWith(
-  primaryColor: Colors.black26
-);
-bool isDark=false;
 void main() {
-  runApp(MaterialApp(darkTheme: darkTheme,theme: lightTheme,themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
-      debugShowCheckedModeBanner: false,
-      home: const MyApp()));
+  runApp(MaterialApp(debugShowCheckedModeBanner: false, home: const MyApp()));
 }
-
+bool isDark = false;
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -89,7 +80,7 @@ class MyApp extends StatelessWidget {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                              const MainPage()),
+                                                  const MainPage()),
                                         );
                                       }),
                                 ),
@@ -108,4 +99,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

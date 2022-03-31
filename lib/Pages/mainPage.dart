@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:maestro2/Pages/AllTime.dart';
 import 'package:maestro2/Pages/Monthly.dart';
 
@@ -21,112 +23,169 @@ class _MainPageState extends State<MainPage> {
           centerTitle: true,
           backgroundColor: Colors.black,
           title: Text("Maestro")),
-      body: ListView(
-        padding: EdgeInsets.all(5),
-        children: [
-          ListTile(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const Monthly()),
-              );
-            },
-            title: Row(
-              children: [
-                Icon(
-                  Icons.calendar_today,
-                  size: 48,
+      body: Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('assets/images/profilBackground.png'),
+                  fit: BoxFit.cover)),
+          child: Column(
+            children: [
+              Spacer(),
+              Flexible(
+                child: Row(
+                  children: [Spacer(),
+                    Flexible(
+                        fit: FlexFit.tight,
+                        child: Container(
+                          child: FittedBox(
+                            child: FloatingActionButton(backgroundColor: Color(0x16FFFFFF),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                              child: Column(
+                                children: [
+                                  FittedBox(
+                                    child: Icon(
+                                      Icons.calendar_today,
+                                    ),
+                                  ),
+                                  FittedBox(
+                                    child: Text(
+                                      "Aylık",
+                                    ),
+                                  )
+                                ],
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const Monthly()),
+                                );
+                              },
+                            ),
+                          ),
+                        )),Spacer(),
+                    Flexible(
+                        fit: FlexFit.tight,
+                        child: FittedBox(
+                          child: FloatingActionButton(backgroundColor: Color(0x16FFFFFF),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                            child: Column(
+                              children: [
+                                FittedBox(
+                                  child: Icon(
+                                    Icons.view_week,
+                                  ),
+                                ),
+                                FittedBox(
+                                    child: Text(
+                                  "6 Aylık",
+                                ))
+                              ],
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const SemiAnnual()),
+                              );
+                            },
+                          ),
+                        )),Spacer(),
+                  ],
                 ),
-                Text("  Aylık",
-                    style: TextStyle(
-                      fontSize: 48,
-                    ))
-              ],
-            ),
-          ),
-          Divider(
-            height: 0,
-          ),
-          ListTile(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const SemiAnnual()),
-              );
-            },
-            title: Row(
-              children: [
-                Icon(
-                  Icons.view_week,
-                  size: 48,
+              ),
+              Spacer(),
+              Flexible(
+                child: Row(
+                  children: [Spacer(),
+                    Flexible(
+                        fit: FlexFit.tight,
+                        child: FittedBox(
+                          child: FloatingActionButton(backgroundColor: Color(0x16FFFFFF),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                            child: Column(
+                              children: [
+                                FittedBox(
+                                  child: Icon(
+                                    Icons.watch_later,
+                                  ),
+                                ),
+                                FittedBox(
+                                  child: Text(
+                                    "    Tüm\nZamanlar",
+                                  ),
+                                )
+                              ],
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const AllTime()),
+                              );
+                            },
+                          ),
+                        )),Spacer(),
+                    Flexible(
+                        fit: FlexFit.tight,
+                        child: FittedBox(
+                            child: FloatingActionButton(backgroundColor: Color(0x16FFFFFF),
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                                child: Column(
+                                  children: [
+                                    FittedBox(
+                                      child: Icon(
+                                        Icons.insert_chart,
+                                      ),
+                                    ),
+                                    FittedBox(
+                                      child: Text(
+                                        "Özgünlük\n  Hesabı",
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                onPressed: () {}))),Spacer(),
+                  ],
                 ),
-                Text("  6 Aylık",
-                    style: TextStyle(
-                      fontSize: 48,
-                    ))
-              ],
-            ),
-          ),
-          Divider(
-            height: 0,
-          ),
-          ListTile(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const AllTime()),
-              );
-            },
-            title: Row(
-              children: [
-                Icon(
-                  Icons.watch_later,
-                  size: 48,
+              ),
+              Spacer(),
+              Flexible(
+                child: Row(
+                  children: [
+                    Spacer(),
+                    Flexible(
+                        fit: FlexFit.tight,
+                        child: FittedBox(
+                          child: FloatingActionButton(backgroundColor: Color(0x16FFFFFF),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                              child: Column(
+                                children: [
+                                  FittedBox(
+                                    child: Icon(
+                                      Icons.favorite,
+                                    ),
+                                  ),
+                                  FittedBox(
+                                    child: Text(
+                                      " Aylık\nTürler",
+                                    ),
+                                  )
+                                ],
+                              ),
+                              onPressed: () {}),
+                        )),Spacer(),
+                    Flexible(
+                        fit: FlexFit.tight,
+                        child: FittedBox(
+                            child: FloatingActionButton(backgroundColor: Color(0x16FFFFFF),shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                                onPressed: () {}))),Spacer(),
+                  ],
                 ),
-                Text("  Tüm \n  Zamanlar",
-                    style: TextStyle(
-                      fontSize: 48,
-                    ))
-              ],
-            ),
-          ),
-          Divider(
-            height: 0,
-          ),
-          ListTile(
-            title: Row(
-              children: [
-                Icon(
-                  Icons.insert_chart,
-                  size: 48,
-                ),
-                Text("  Özgünlük \n  Hesabı",
-                    style: TextStyle(
-                      fontSize: 48,
-                    ))
-              ],
-            ),
-          ),
-          Divider(
-            height: 0,
-          ),
-          ListTile(
-            onTap: () {},
-            title: Row(
-              children: [
-                Icon(
-                  Icons.favorite,
-                  size: 48,
-                ),
-                Text("  Aylık Türler",
-                    style: TextStyle(
-                      fontSize: 48,
-                    ))
-              ],
-            ),
-          )
-        ],
-      ),
+              ),
+              Spacer(),
+            ],
+          )),
     );
   }
 }

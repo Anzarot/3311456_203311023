@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:maestro2/Widgets/Drawer.dart';
 import 'dart:async' show Future;
-import 'main.dart';
+import '../main.dart';
 import 'package:flutter/services.dart' show rootBundle;
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -12,6 +12,7 @@ class Settings extends StatefulWidget {
 
 
 class _SettingsState extends State<Settings> {
+  bool isDark = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,5 +1,10 @@
+
+//WIP
+//Drawer Görselinin Dark Mode Uyumluluğu için kullanılacak widget
+//WIP
+
 import 'package:flutter/material.dart';
-import 'package:maestro2/Pages/main.dart';
+import 'package:maestro2/main.dart';
 class Cimen extends StatefulWidget {
   const Cimen({Key? key}) : super(key: key);
 
