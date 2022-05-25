@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:maestro2/Pages/AllTime.dart';
 import 'package:maestro2/Pages/Monthly.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:maestro2/Widgets/Drawer.dart';
 import 'package:maestro2/Pages/SemiAnnual.dart';
 
@@ -15,6 +15,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  final user = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -178,7 +179,7 @@ class _MainPageState extends State<MainPage> {
                     Flexible(
                         fit: FlexFit.tight,
                         child: FittedBox(
-                            child: FloatingActionButton(backgroundColor: Color(0x16FFFFFF),shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                            child: FloatingActionButton(child:Text(user.uid),backgroundColor: Color(0x16FFFFFF),shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                                 onPressed: () {}))),Spacer(),
                   ],
                 ),

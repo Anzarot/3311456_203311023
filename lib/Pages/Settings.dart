@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:maestro2/Services/linkTokenService.dart';
+import 'package:maestro2/Utility%20Files/ClientSecret.dart';
 import 'package:maestro2/Widgets/Drawer.dart';
-import 'dart:async' show Future;
-import '../main.dart';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter_web_auth/flutter_web_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
 
@@ -10,9 +12,9 @@ class Settings extends StatefulWidget {
   _SettingsState createState() => _SettingsState();
 }
 
-
 class _SettingsState extends State<Settings> {
-  bool isDark = false;
+  final user = FirebaseAuth.instance.currentUser!;
+  final tokenController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,21 +24,42 @@ class _SettingsState extends State<Settings> {
             backgroundColor: Colors.black,
             title: Text("Ayarlar")),
         body: Container(
-          child: ListView(
-            children: [
-              SwitchListTile(
-                  title: Text("Karanlık Mod "),
-                  value: isDark,
-                  onChanged: (bool value) {
-                    setState(() {
-                      isDark=!isDark;
-
-                    });
-                  }),
-              Divider()
-            ],
-          ),
-        ));
+            child: Row(
+              children: [Spacer(),Flexible(flex: 3,
+                child: Column(
+                  children: [
+                    Spacer(),
+                    Flexible(
+                        fit: FlexFit.tight,
+                        flex: 5,
+                        child: FittedBox(child: Text("Spotify Hesabını Bağla!"))),
+                    Spacer(),
+                    Flexible(
+                        fit: FlexFit.tight,
+                        flex: 6,
+                        child: Image.asset('assets/images/SpotifyLogoLight.png')),
+                    Spacer(),
+                    TextField(
+                      controller: tokenController,
+                    ),
+                    Spacer(),
+                    Flexible(
+                        fit: FlexFit.tight,
+                        flex: 6,
+                        child: FittedBox(
+                            child: Container(width: 250,
+                              child: FloatingActionButton(shape: RoundedRectangleBorder(),
+                                  backgroundColor: Colors.black,
+                                  child: Text("Link"),
+                                  onPressed: () => {
+                                        linkUser(
+                                            spotifyToken: tokenController.text,
+                                            userID: user.uid)
+                                      }),
+                            ))),Spacer()
+                  ],
+                ),
+              ),Spacer()]
+            )));
   }
 }
-

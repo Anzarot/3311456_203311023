@@ -1,101 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:maestro2/Pages/Register.dart';
 import 'package:maestro2/Pages/mainPage.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:maestro2/Pages/loginPage.dart';
+import 'firebase_options.dart';
 
-void main() {
-  runApp(MaterialApp(debugShowCheckedModeBanner: false, home: const MyApp()));
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(MaterialApp(debugShowCheckedModeBanner: false, home: MyApp()));
 }
-bool isDark = false;
-class MyApp extends StatelessWidget {
+
+
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage('assets/images/background.jpg'),
-                  fit: BoxFit.cover)),
-          child: Row(
-            children: [
-              Spacer(flex: 3),
-              Flexible(
-                  flex: 9,
-                  fit: FlexFit.tight,
-                  child: Column(
-                    children: [
-                      Spacer(),
-                      Flexible(
-                        flex: 3,
-                        child: Container(
-                          decoration: BoxDecoration(color: Colors.white),
-                          child: Column(
-                            children: [
-                              Spacer(
-                                flex: 1,
-                              ),
-                              FittedBox(
-                                child: Image.asset('assets/images/maestro.png'),
-                              ),
-                              Divider(),
-                              Spacer(flex: 1),
-                              FittedBox(child: Text("Kullanıcı Adı")),
-                              Spacer(flex: 1),
-                              Flexible(
-                                  flex: 2,
-                                  child: Row(children: [
-                                    Spacer(),
-                                    Flexible(flex: 5, child: TextField()),
-                                    Spacer()
-                                  ])),
-                              Spacer(flex: 1),
-                              FittedBox(child: Text("Şifre")),
-                              Spacer(flex: 1),
-                              Flexible(
-                                  flex: 2,
-                                  child: Row(children: [
-                                    Spacer(),
-                                    Flexible(
-                                        flex: 5,
-                                        child: TextField(
-                                            obscureText: true,
-                                            enableSuggestions: false,
-                                            autocorrect: false)),
-                                    Spacer()
-                                  ])),
-                              Spacer(flex: 3),
-                              Flexible(
-                                flex: 3,
-                                child: Container(
-                                  width: 250,
-                                  child: FloatingActionButton(
-                                      child: Text(
-                                        "Giriş",
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                      backgroundColor: Color(0xff1b1b1c),
-                                      shape: RoundedRectangleBorder(),
-                                      onPressed: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const MainPage()),
-                                        );
-                                      }),
-                                ),
-                              ),
-                              Spacer(flex: 3)
-                            ],
-                          ),
-                        ),
-                      ),
-                      Spacer(),
-                    ],
-                  )),
-              Spacer(flex: 3),
-            ],
-          )),
+    return StreamBuilder(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        if(snapshot.hasData)
+          return MainPage();
+        else
+          return loginPage();
+      },
     );
   }
 }
+

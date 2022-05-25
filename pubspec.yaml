@@ -36,6 +36,13 @@ dependencies:
   cupertino_icons: ^1.0.2
   http: ^0.13.4
   bordered_text: ^2.0.0
+  firebase_core: ^1.15.0
+  firebase_auth: ^3.3.18
+  cloud_firestore: ^3.1.15
+  uuid: ^3.0.6
+  provider: ^6.0.2
+  spotify_sdk: ^2.3.0
+  flutter_web_auth: ^0.4.1
   #shared_preferences: ^2.0.13
   #shared_value: ^2.1.2
   #flutter_web_auth: ^0.4.1

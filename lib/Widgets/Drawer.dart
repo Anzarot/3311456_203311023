@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 import 'dart:io';
 import 'dart:convert';
@@ -156,9 +157,8 @@ class _SolBarState extends State<SolBar> {
                       contentPadding:
                       EdgeInsets.symmetric(vertical: 5, horizontal: 25),
                       tileColor: Colors.red,
-                      onTap: () {
-                        Navigator.of(context)
-                            .popUntil((route) => route.isFirst);
+                      onTap: () => {
+                        FirebaseAuth.instance.signOut()
                       },
                       title: Row(
                         children: [
@@ -169,7 +169,7 @@ class _SolBarState extends State<SolBar> {
                       ),
                     ),
                   ],
-                )),Container(child: Image.asset("assets/images/blurlu.png"))
+                )),
           ],
         ),
       ),
