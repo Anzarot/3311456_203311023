@@ -3,7 +3,6 @@ import 'package:maestro2/Pages/Register.dart';
 import 'package:maestro2/Pages/mainPage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:maestro2/Pages/passwordReset.dart';
-import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:maestro2/Services/LoginService.dart';
 class loginPage extends StatelessWidget {

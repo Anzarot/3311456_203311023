@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:maestro2/Pages/AllTime.dart';
 import 'package:maestro2/Pages/Monthly.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:maestro2/Pages/popularityMetric.dart';
 import 'package:maestro2/Widgets/Drawer.dart';
 import 'package:maestro2/Pages/SemiAnnual.dart';
 
@@ -34,13 +35,16 @@ class _MainPageState extends State<MainPage> {
               Spacer(),
               Flexible(
                 child: Row(
-                  children: [Spacer(),
+                  children: [
+                    Spacer(),
                     Flexible(
                         fit: FlexFit.tight,
                         child: Container(
                           child: FittedBox(
-                            child: FloatingActionButton(backgroundColor: Color(0x16FFFFFF),
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                            child: FloatingActionButton(
+                              backgroundColor: Color(0x16FFFFFF),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
                               child: Column(
                                 children: [
                                   FittedBox(
@@ -64,12 +68,15 @@ class _MainPageState extends State<MainPage> {
                               },
                             ),
                           ),
-                        )),Spacer(),
+                        )),
+                    Spacer(),
                     Flexible(
                         fit: FlexFit.tight,
                         child: FittedBox(
-                          child: FloatingActionButton(backgroundColor: Color(0x16FFFFFF),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                          child: FloatingActionButton(
+                            backgroundColor: Color(0x16FFFFFF),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
                             child: Column(
                               children: [
                                 FittedBox(
@@ -91,19 +98,23 @@ class _MainPageState extends State<MainPage> {
                               );
                             },
                           ),
-                        )),Spacer(),
+                        )),
+                    Spacer(),
                   ],
                 ),
               ),
               Spacer(),
               Flexible(
                 child: Row(
-                  children: [Spacer(),
+                  children: [
+                    Spacer(),
                     Flexible(
                         fit: FlexFit.tight,
                         child: FittedBox(
-                          child: FloatingActionButton(backgroundColor: Color(0x16FFFFFF),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                          child: FloatingActionButton(
+                            backgroundColor: Color(0x16FFFFFF),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
                             child: Column(
                               children: [
                                 FittedBox(
@@ -126,12 +137,15 @@ class _MainPageState extends State<MainPage> {
                               );
                             },
                           ),
-                        )),Spacer(),
+                        )),
+                    Spacer(),
                     Flexible(
                         fit: FlexFit.tight,
                         child: FittedBox(
-                            child: FloatingActionButton(backgroundColor: Color(0x16FFFFFF),
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                            child: FloatingActionButton(
+                                backgroundColor: Color(0x16FFFFFF),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)),
                                 child: Column(
                                   children: [
                                     FittedBox(
@@ -146,7 +160,15 @@ class _MainPageState extends State<MainPage> {
                                     )
                                   ],
                                 ),
-                                onPressed: () {}))),Spacer(),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const PopularityMetric()),
+                                  );
+                                }))),
+                    Spacer(),
                   ],
                 ),
               ),
@@ -158,8 +180,10 @@ class _MainPageState extends State<MainPage> {
                     Flexible(
                         fit: FlexFit.tight,
                         child: FittedBox(
-                          child: FloatingActionButton(backgroundColor: Color(0x16FFFFFF),
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                          child: FloatingActionButton(
+                              backgroundColor: Color(0x16FFFFFF),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
                               child: Column(
                                 children: [
                                   FittedBox(
@@ -175,12 +199,18 @@ class _MainPageState extends State<MainPage> {
                                 ],
                               ),
                               onPressed: () {}),
-                        )),Spacer(),
+                        )),
+                    Spacer(),
                     Flexible(
                         fit: FlexFit.tight,
                         child: FittedBox(
-                            child: FloatingActionButton(child:Text(user.uid),backgroundColor: Color(0x16FFFFFF),shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                                onPressed: () {}))),Spacer(),
+                            child: FloatingActionButton(
+                                child: Text(user.uid),
+                                backgroundColor: Color(0x16FFFFFF),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                onPressed: () {}))),
+                    Spacer(),
                   ],
                 ),
               ),

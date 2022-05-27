@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:maestro2/Services/linkTokenService.dart';
+import 'package:maestro2/Services/tokenWR.dart';
 import 'package:maestro2/Utility%20Files/ClientSecret.dart';
 import 'package:maestro2/Widgets/Drawer.dart';
-import 'package:flutter_web_auth/flutter_web_auth.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 
 class Settings extends StatefulWidget {
@@ -52,6 +53,7 @@ class _SettingsState extends State<Settings> {
                                   backgroundColor: Colors.black,
                                   child: Text("Link"),
                                   onPressed: () => {
+                                writeToken(tokenController.text),
                                         linkUser(
                                             spotifyToken: tokenController.text,
                                             userID: user.uid)
