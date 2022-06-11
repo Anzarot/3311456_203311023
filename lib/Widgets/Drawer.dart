@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
+import 'package:maestro2/Pages/GestureTest.dart';
 import 'dart:io';
 import 'dart:convert';
 import 'package:maestro2/Utility Files/ClientSecret.dart';
@@ -152,7 +153,26 @@ class _SolBarState extends State<SolBar> {
                     ),
                     Divider(
                       height: 0,
+                    ),ListTile(
+                      contentPadding:
+                      EdgeInsets.symmetric(vertical: 5, horizontal: 25),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const GesturePage()),
+                        );
+                      },
+                      title: Row(children: [
+                        Icon(
+                          Icons.gesture,
+                        ),
+                        Text(
+                          "  Gesture Test",
+                        )
+                      ]),
                     ),
+                    Divider(height: 0,),
                     ListTile(
                       contentPadding:
                       EdgeInsets.symmetric(vertical: 5, horizontal: 25),

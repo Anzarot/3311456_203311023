@@ -38,19 +38,15 @@ class loginPage extends StatelessWidget {
                               FittedBox(
                                 child: Image.asset('assets/images/maestro.png'),
                               ),
-                              Divider(),
-                              Spacer(flex: 1),
-                              FittedBox(child: Text("E-Mail")),
-                              Spacer(flex: 1),
+
+                              Spacer(flex: 2),
                               Flexible(
                                   flex: 4,
                                   child: Row(children: [
                                     Spacer(),
-                                    Flexible(flex: 9, child: TextField(controller: loginEmail,)),
+                                    Flexible(flex: 9, child: TextField(controller: loginEmail,decoration: InputDecoration(hintText: 'E-Mail'),)),
                                     Spacer()
                                   ])),
-                              Spacer(flex: 1),
-                              FittedBox(child: Text("Şifre")),
                               Spacer(flex: 1),
                               Flexible(
                                   flex: 4,
@@ -59,7 +55,7 @@ class loginPage extends StatelessWidget {
                                     Flexible(
                                         flex: 9,
                                         child: TextField(controller: loginPassword,
-                                            obscureText: true,
+                                            obscureText: true,decoration: InputDecoration(hintText: 'Şifre'),
                                             enableSuggestions: false,
                                             autocorrect: false)),
                                     Spacer()
@@ -102,21 +98,14 @@ class loginPage extends StatelessWidget {
                               Spacer(flex: 2),
                               Container(
                                   width: 250,
-                                  child: FloatingActionButton(
-                                      shape: RoundedRectangleBorder(),
-                                      backgroundColor: Colors.white,
-                                      child: Text(
-                                        "Şifrenizi Mi Unuttunuz?",
-                                        style: TextStyle(color: Colors.black),
-                                      ),
-                                      onPressed: () {
+                                  child: TextButton(onPressed: () {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
                                               const ResetPassword()),
                                         );
-                                      })),Spacer(flex: 2,)
+                                      },child: RichText(text: TextSpan(text: 'Şifrenizi mi unuttunuz?'),),)),Spacer(flex: 2,)
                             ],
                           ),
                         ),

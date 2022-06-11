@@ -1,35 +1,24 @@
-import 'dart:io';
+/* import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'dart:async';
 
-Future<String> get _localPath async {
-  final directory = await getApplicationDocumentsDirectory();
-
-  return directory.path;
-}
-
-Future<File> get _localFile async {
-  final path = await _localPath;
-  return File('$path/token.txt');
-}
-
-Future<File> writeToken(String token) async {
-  final file = await _localFile;
-
-  // Write the file
-  return file.writeAsString(token);
+writeToken(String text) async {
+  final Directory directory = await getApplicationDocumentsDirectory();
+  final File file = File('${directory.path}/token.txt');
+  await file.writeAsString(text);
 }
 
 Future<String> readToken() async {
+  String text ="";
   try {
-    final file = await _localFile;
-
-    // Read the file
-    final contents = await file.readAsString();
-
-    return contents;
+    final Directory directory = await getApplicationDocumentsDirectory();
+    final File file = File('${directory.path}/token.txt');
+    text = await file.readAsString();
+    print("YAZDIM");
   } catch (e) {
-    // If encountering an error, return 0
-    return "Error";
+    print("Couldn't read file");
   }
+  return text;
 }
+
+ */

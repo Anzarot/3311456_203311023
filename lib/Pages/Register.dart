@@ -68,9 +68,18 @@ class _RegisterState extends State<Register> {
                           backgroundColor: Colors.black,
                           child: Text("Kayıt Ol"),
                           onPressed: (){
+                            final snackBar = SnackBar(
+                              backgroundColor: Colors.lightGreen,
+                              content: const Text('Başarıyla Kayıt Olundu!'),
+                            );
                             if(password.text==password2.text){
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
                               FirebaseAuth.instance.createUserWithEmailAndPassword(email: email.text, password: password.text);
                               Navigator.pop(context);
+
+
+
                             }
 
                               //createUser(userID: uuid.v4(), userEMail: email.text, userPassword:password.text);

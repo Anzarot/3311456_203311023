@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:maestro2/Pages/AdminPage.dart';
 import 'package:maestro2/Pages/AllTime.dart';
 import 'package:maestro2/Pages/Monthly.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:maestro2/Pages/hivePage.dart';
+
 import 'package:maestro2/Pages/popularityMetric.dart';
 import 'package:maestro2/Widgets/Drawer.dart';
 import 'package:maestro2/Pages/SemiAnnual.dart';
@@ -193,23 +196,48 @@ class _MainPageState extends State<MainPage> {
                                   ),
                                   FittedBox(
                                     child: Text(
-                                      " Aylık\nTürler",
+                                      "Admin\nSayfası",
                                     ),
                                   )
                                 ],
                               ),
-                              onPressed: () {}),
+                              onPressed: () {Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        AdminPage()),
+                              );}),
                         )),
                     Spacer(),
                     Flexible(
                         fit: FlexFit.tight,
                         child: FittedBox(
                             child: FloatingActionButton(
-                                child: Text(user.uid),
-                                backgroundColor: Color(0x16FFFFFF),
+                                child: Column(
+                                  children: [
+                                    FittedBox(
+                                      child: Icon(
+                                        Icons.build_rounded,
+                                      ),
+                                    ),
+                                    FittedBox(
+                                      child: Text(
+                                        "SQFLite\nDeneme",
+                                      ),
+                                    )
+                                  ],
+                                )
+                                ,backgroundColor: Color(0x16FFFFFF),
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10)),
-                                onPressed: () {}))),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                         HivePage()),
+                                  );
+                                }))),
                     Spacer(),
                   ],
                 ),
