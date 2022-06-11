@@ -19,7 +19,7 @@ class _GesturePageState extends State<GesturePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(appBar: AppBar(centerTitle: true,title: Text('Gesture Test'),backgroundColor: Colors.black,),
-      body: Container(
+      body: Container(color: Colors.white,
         child: Row(
           children: [
             Spacer(),

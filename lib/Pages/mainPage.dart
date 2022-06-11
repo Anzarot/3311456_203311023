@@ -20,6 +20,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   final user = FirebaseAuth.instance.currentUser!;
+  final admincred = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -191,7 +192,7 @@ class _MainPageState extends State<MainPage> {
                                 children: [
                                   FittedBox(
                                     child: Icon(
-                                      Icons.favorite,
+                                      Icons.lock,
                                     ),
                                   ),
                                   FittedBox(
@@ -201,12 +202,39 @@ class _MainPageState extends State<MainPage> {
                                   )
                                 ],
                               ),
-                              onPressed: () {Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        AdminPage()),
-                              );}),
+                              onPressed: () => showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) =>
+                                      AlertDialog(
+                                        title: const Text('Admin Girişi'),
+                                        content: TextField(
+                                          controller: admincred,
+                                          decoration: InputDecoration(
+                                              hintText: 'Admin Şifresi'),
+                                        ),
+                                        actions: <Widget>[
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                context, 'Cancel'),
+                                            child: const Text('Cancel'),
+                                          ),
+                                          TextButton(
+                                            onPressed: () {
+                                              if (admincred.text == 'admin') {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          AdminPage()),
+                                                );
+                                              } else {
+                                                Navigator.pop(context);
+                                              }
+                                            },
+                                            child: const Text('OK'),
+                                          ),
+                                        ],
+                                      ))),
                         )),
                     Spacer(),
                     Flexible(
@@ -226,16 +254,15 @@ class _MainPageState extends State<MainPage> {
                                       ),
                                     )
                                   ],
-                                )
-                                ,backgroundColor: Color(0x16FFFFFF),
+                                ),
+                                backgroundColor: Color(0x16FFFFFF),
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10)),
                                 onPressed: () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                         HivePage()),
+                                        builder: (context) => HivePage()),
                                   );
                                 }))),
                     Spacer(),

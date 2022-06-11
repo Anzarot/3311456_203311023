@@ -10,7 +10,6 @@ import 'dart:convert';
 import 'package:maestro2/Utility Files/ClientSecret.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-
 Future<Popularity> fetchPopularity() async {
   final response = await http.get(
       Uri.parse(

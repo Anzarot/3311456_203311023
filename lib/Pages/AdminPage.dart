@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:maestro2/Models/Users.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:maestro2/Services/linkPopularity.dart';
-
+import 'package:uuid/uuid.dart';
 class AdminPage extends StatefulWidget {
   const AdminPage({Key? key}) : super(key: key);
 
@@ -13,6 +13,7 @@ class AdminPage extends StatefulWidget {
 
 class _AdminPageState extends State<AdminPage> {
   @override
+  Uuid randomid = Uuid();
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -47,10 +48,15 @@ class _AdminPageState extends State<AdminPage> {
                       ),
                       TextButton(
                         onPressed: () {
-                          if (sayiMi(addPop.text) && addID.text.isNotEmpty) {
+                          String id ='';
+                          if (sayiMi(addPop.text)) {
+                            if(addID.text.isEmpty){
+                              id = randomid.v4();
+                            }
+                            else {id = addID.text;}
                             linkPopularity(
                                 popularity: int.parse(addPop.text),
-                                userID: addID.text);
+                                userID: id);
                             final snackBar = SnackBar(
                               backgroundColor:
                               Colors.lightGreen,
