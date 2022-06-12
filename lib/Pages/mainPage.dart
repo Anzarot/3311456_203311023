@@ -250,7 +250,7 @@ class _MainPageState extends State<MainPage> {
                                     ),
                                     FittedBox(
                                       child: Text(
-                                        "SQFLite\nDeneme",
+                                        "   Hive\nDeneme",
                                       ),
                                     )
                                   ],
