@@ -70,43 +70,47 @@ class _GesturePageState extends State<GesturePage> {
                   Spacer(),
                   Flexible(
                     fit: FlexFit.tight,
-                    child: GestureDetector(
-                        onVerticalDragUpdate: (details) {
-                          if (details.delta.dy > 0 || details.delta.dy < 0) {
+                    child: InkWell(onTap: (){},
+                      child: GestureDetector(
+                          onVerticalDragUpdate: (details) {
+                            if (details.delta.dy > 0 || details.delta.dy < 0) {
+                              setState(() {
+                                verticaldrag = true;
+                              });
+                            }
+                          },
+                          onVerticalDragEnd: (details) {
                             setState(() {
-                              verticaldrag = true;
+                              verticaldrag = false;
                             });
-                          }
-                        },
-                        onVerticalDragEnd: (details) {
-                          setState(() {
-                            verticaldrag = false;
-                          });
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(border: Border.all()),
-                          child: Center(child: Text("On Vertical Drag")),
-                        )),
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(border: Border.all()),
+                            child: Center(child: Text("On Vertical Drag")),
+                          )),
+                    ),
                   ),
                   Spacer(),
                   Flexible(
                     fit: FlexFit.tight,
-                    child: GestureDetector(
-                      onHorizontalDragUpdate: (details) {
-                        if (details.delta.dx > 0 || details.delta.dx < 0) {
+                    child: InkWell(onTap: (){},
+                      child: GestureDetector(
+                        onHorizontalDragUpdate: (details) {
+                          if (details.delta.dx > 0 || details.delta.dx < 0) {
+                            setState(() {
+                              horizontaldrag = true;
+                            });
+                          }
+                        },
+                        onHorizontalDragEnd: (details) {
                           setState(() {
-                            horizontaldrag = true;
+                            horizontaldrag = false;
                           });
-                        }
-                      },
-                      onHorizontalDragEnd: (details) {
-                        setState(() {
-                          horizontaldrag = false;
-                        });
-                      },
-                      child: Container(
-                        child: Center(child: Text("On Horizontal Drag")),
-                        decoration: BoxDecoration(border: Border.all()),
+                        },
+                        child: Container(
+                          child: Center(child: Text("On Horizontal Drag")),
+                          decoration: BoxDecoration(border: Border.all()),
+                        ),
                       ),
                     ),
                   ),

@@ -6,7 +6,6 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:maestro2/Utility Files/ClientSecret.dart';
 import 'package:maestro2/Pages/Profil.dart';
-import 'package:maestro2/Pages/Settings.dart';
 import 'package:flutter/material.dart';
 Future<Avatar> fetchAvatar() async {
   final response = await http.get(
@@ -129,28 +128,6 @@ class _SolBarState extends State<SolBar> {
                             "  Profilim",
                           )
                         ])),
-                    Divider(
-                      height: 0,
-                    ),
-                    ListTile(
-                      contentPadding:
-                      EdgeInsets.symmetric(vertical: 5, horizontal: 25),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Settings()),
-                        );
-                      },
-                      title: Row(children: [
-                        Icon(
-                          Icons.settings,
-                        ),
-                        Text(
-                          "  Ayarlar",
-                        )
-                      ]),
-                    ),
                     Divider(
                       height: 0,
                     ),ListTile(
