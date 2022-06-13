@@ -125,7 +125,7 @@ class _AllTimeState extends State<AllTime> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: SolBar(),
+
         appBar: AppBar(
             centerTitle: true,
             backgroundColor: Colors.black,

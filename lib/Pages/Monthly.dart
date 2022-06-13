@@ -128,7 +128,6 @@ class _MonthlyState extends State<Monthly> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: SolBar(),
         appBar: AppBar(
             centerTitle: true,
             backgroundColor: Colors.black,
