@@ -2,6 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:maestro2/Models/PopPair.dart';
 import 'package:maestro2/Models/Users.dart';
+import 'package:maestro2/Pages/AdminPage.dart';
 import 'package:maestro2/Services/linkPopularity.dart';
 import 'package:maestro2/Widgets/Drawer.dart';
 import 'package:http/http.dart' as http;
@@ -64,6 +65,7 @@ class _PopularityMetricState extends State<PopularityMetric> {
     super.initState();
     Populerlik = fetchPopularity();
   }
+  List<Color> popRenkList = [Colors.red,Colors.orange,Colors.yellow,Colors.lightGreenAccent,Colors.green];
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,80 +74,115 @@ class _PopularityMetricState extends State<PopularityMetric> {
         centerTitle: true,
         backgroundColor: Colors.black,
       ),
-      body: Column(children: [
+      body: Row(children: [
+        Spacer(),
         Flexible(
-          child: Container(
-            child: FutureBuilder<Popularity>(
-              future: Populerlik,
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  linkPopularity(
-                      popularity: snapshot.data!.avgPopularity,
-                      userID: user.uid);
+          flex: 10,
+          child: Column(children: [
+            Spacer(),
+            Flexible(
+              fit: FlexFit.tight,
+              child: Container(
+                child: FutureBuilder<Popularity>(
+                  future: Populerlik,
+                  builder: (context, snapshot) {
+                    try {
+                      if (snapshot.hasData) {
+                        linkPopularity(
+                            popularity: snapshot.data!.avgPopularity,
+                            userID: user.uid);
 
-                  return Text(
-                    snapshot.data!.avgPopularity.toString(),
-                  );
-                } else if (snapshot.hasError) {
-                  print(snapshot.data!.avgPopularity);
-                  return Text('${snapshot.error}');
-                }
-                return const CircularProgressIndicator();
-              },
-            ),
-          ),
-        ),
-        Flexible(
-          child: StreamBuilder<List<popUser>>(
-              stream: readPopularity(),
-              builder: (context, snapshot) {
-                final List<Color> gradient = [
-                  Colors.red.shade900,
-                  Colors.green.shade700
-                ];
-                if (snapshot.hasData) {
-                  final users = snapshot.data!;
-                  List<PopPair> popAll = [];
-                  for (int i = 0; i <= 100; i++) {
-                    PopPair yeniPop = PopPair(popX: i, popY: 0);
-                    popAll.add(yeniPop);
-                  }
-                  for (int i = 0; i < users.length; i++) {
-                    int arananPop = users[i].pop!;
-                    for (int j = 0; j <= 100; j++) {
-                      if (popAll[j].popX == arananPop) {
-                        popAll[j].popY++;
+                        return Row(children: [
+                          Text(
+                            "            Popülerlik Skorunuz: ",
+                            style: TextStyle(
+                              fontSize: 26,
+                            ),
+                          ),
+                          Text(
+                            snapshot.data!.avgPopularity.toString(),
+                            style: TextStyle(
+                                fontSize: 36, fontWeight: FontWeight.bold, color: popRenk(snapshot.data!.avgPopularity)),
+                          )
+                        ]);
+                      } else if (snapshot.hasError) {
+                        print(snapshot.data!.avgPopularity);
+                        return Text('${snapshot.error}');
                       }
+                      return const CircularProgressIndicator();
+                    } catch (e) {
+                      return Text("Bir hata oluştu: " + e.toString());
                     }
-                  }
-                  List<FlSpot> spotAll = [];
-                  for (int i = 0; i <= 100; i++) {
-                    FlSpot yeniSpot =
-                        FlSpot(i.toDouble(), popAll[i].popY.toDouble());
-                    spotAll.add(yeniSpot);
-                  }
+                  },
+                ),
+              ),
+            ),
+            Spacer(),
+            Flexible(
+              flex: 3,
+              fit: FlexFit.tight,
+              child: StreamBuilder<List<popUser>>(
+                  stream: readPopularity(),
+                  builder: (context, snapshot) {
+                    final List<Color> gradient = [
+                      Colors.red.shade900,
+                      Colors.green.shade700
+                    ];
+                    if (snapshot.hasData) {
+                      final users = snapshot.data!;
+                      List<PopPair> popAll = [];
+                      for (int i = 0; i <= 100; i++) {
+                        PopPair yeniPop = PopPair(popX: i, popY: 0);
+                        popAll.add(yeniPop);
+                      }
+                      for (int i = 0; i < users.length; i++) {
+                        int arananPop = users[i].pop!;
+                        for (int j = 0; j <= 100; j++) {
+                          if (popAll[j].popX == arananPop) {
+                            popAll[j].popY++;
+                          }
+                        }
+                      }
+                      List<FlSpot> spotAll = [];
+                      for (int i = 0; i <= 100; i++) {
+                        FlSpot yeniSpot =
+                            FlSpot(i.toDouble(), popAll[i].popY.toDouble());
+                        spotAll.add(yeniSpot);
+                      }
 
-                  return Container(
-                    child: LineChart(
-                      LineChartData(
-                        titlesData: FlTitlesData(show: true,),
-                          minX: 0,
-                          minY: 0,
-                          maxX: 100,
-                          maxY: 20,
-                          lineBarsData: [
-                            LineChartBarData(
-                                spots: spotAll,
-                                isCurved: true,dotData: FlDotData(show: false),color: Colors.black,
-                                belowBarData: BarAreaData(
-                                    show: true, color: Color(0xBB000000)))
-                          ]),
-                    ),
-                  );
-                } else {
-                  return Center(child: CircularProgressIndicator());
-                }
-              }),
+                      return Container(
+                        child: LineChart(
+                          LineChartData(
+                              titlesData: FlTitlesData(
+                                  show: true,
+                                  topTitles: AxisTitles(axisNameSize: 0),
+                                  rightTitles: AxisTitles(axisNameSize: 0),),
+                              minX: 0,
+                              minY: 0,
+                              maxX: 100,
+                              maxY: 10,
+                              lineBarsData: [
+                                LineChartBarData(gradient: LinearGradient(colors: popRenkList),
+                                    spots: spotAll,
+                                    isCurved: true,
+                                    dotData: FlDotData(show: false),
+                                    belowBarData: BarAreaData(
+                                        show: true, gradient: LinearGradient(colors: popRenkList)))
+                              ]),
+                        ),
+                      );
+                    } else {
+                      return Center(child: CircularProgressIndicator());
+                    }
+                  }),
+            ),
+            Spacer(
+              flex: 2,
+            )
+          ]),
+        ),
+        Spacer(
+          flex: 2,
         )
       ]),
     );

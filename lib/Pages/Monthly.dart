@@ -62,7 +62,6 @@ Future<Track> fetchTracks() async {
       });
 
   if (response.statusCode == 200) {
-    print('Oldu!');
     return Track.fromJson(jsonDecode(response.body));
   } else {
     throw Exception('Failed to load data');
@@ -161,7 +160,6 @@ class _MonthlyState extends State<Monthly> {
                               fit: BoxFit.fill,
                             );
                           } else if (snapshot.hasError) {
-                            print(snapshot.data!.firstURL);
                             return Text('${snapshot.error}');
                           }
                           return const CircularProgressIndicator();

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:maestro2/Models/Boxes.dart';
-import 'dart:io';
 import 'package:maestro2/Models/LocalModel.dart';
-import 'package:maestro2/main.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:uuid/uuid.dart';
 import 'package:maestro2/Models/LocalModel.dart';
@@ -32,7 +30,7 @@ class _HivePageState extends State<HivePage> {
       ..Emekli = _emekli;
     final box = Boxes.getLocalUsers();
     box.add(localuserobj);
-    print("Ekledim Panpa");
+
   }
 
   void editLocalUser(LocalUser _localuser, String _ad, int _yas, bool _emekli,
@@ -58,7 +56,7 @@ class _HivePageState extends State<HivePage> {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.black,
-          title: Text("Lokal VeriTabanı Deneme"),
+          title: Text("Lokal Veri Tabanı Deneme"),
           centerTitle: true,
           actions: [
             IconButton(
@@ -156,30 +154,38 @@ class _HivePageState extends State<HivePage> {
                           title: const Text('Kaydı Değiştir'),
                           content: Column(
                             children: [
-                              TextField(
-                                decoration:
-                                    InputDecoration(hintText: 'Ad Soyad'),
-                                controller: cAd,
+                              Flexible(fit: FlexFit.tight,
+                                child: TextField(
+                                  decoration:
+                                      InputDecoration(hintText: 'Ad Soyad'),
+                                  controller: cAd,
+                                ),
                               ),
                               Spacer(),
-                              TextField(
-                                decoration: InputDecoration(hintText: 'Yaş'),
-                                controller: cYas,
+                              Flexible(fit: FlexFit.tight,
+                                child: TextField(
+                                  decoration: InputDecoration(hintText: 'Yaş'),
+                                  controller: cYas,
+                                ),
                               ),
                               Spacer(),
-                              Text('Cinsiyet'),
-                              Switch(
-                                  value: cCinsiyet,
-                                  onChanged: (val) {
-                                    cCinsiyet = !cCinsiyet;
-                                  }),
+                              Flexible(fit: FlexFit.tight,child: Text('Cinsiyet')),
+                              Flexible(fit: FlexFit.tight,
+                                child: Switch(
+                                    value: cCinsiyet,
+                                    onChanged: (val) {
+                                      cCinsiyet = !cCinsiyet;
+                                    }),
+                              ),
                               Spacer(),
-                              Text('Emeklilik'),
-                              Switch(
-                                  value: cEmekli,
-                                  onChanged: (val) {
-                                    cEmekli = !cEmekli;
-                                  }),
+                              Flexible(fit: FlexFit.tight,child: Text('Emeklilik')),
+                              Flexible(fit: FlexFit.tight,
+                                child: Switch(
+                                    value: cEmekli,
+                                    onChanged: (val) {
+                                      cEmekli = !cEmekli;
+                                    }),
+                              ),
                               Spacer(),
                             ],
                           ),

@@ -2,7 +2,7 @@ import 'package:hive/hive.dart';
 part 'LocalModel.g.dart';
 
 @HiveType(typeId: 0)
-class LocalUser{
+class LocalUser extends HiveObject{
   @HiveField(0)
   late String Ad;
   @HiveField(1)
@@ -13,3 +13,4 @@ class LocalUser{
   late bool Emekli;
 
 }
+

@@ -157,7 +157,7 @@ class _SemiAnnualState extends State<SemiAnnual> {
                               fit: BoxFit.fill,
                             );
                           } else if (snapshot.hasError) {
-                            print(snapshot.data!.firstURL);
+
                             return Text('${snapshot.error}');
                           }
                           return const CircularProgressIndicator();
